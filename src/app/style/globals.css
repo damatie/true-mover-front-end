@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom */
+/* Add custom styles for the StepIndicator */
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.step-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #4a5568;
+  color: white;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.step-circle.active {
+  background-color: #000954;
+  color: #fff;
+}
+
+.step-circle.completed {
+  background-color: #48bb78;
+  color: #fff;
+}
+
+.step-label {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.step-line {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  height: 0.25rem;
+  width: 100%;
+  background-color: #e2e8f0;
+  transition: all 0.5s;
+}
+
+.step-line.active {
+  background-color: #f56565;
+}
+
+.step-line.completed {
+  background-color: #48bb78;
+}
