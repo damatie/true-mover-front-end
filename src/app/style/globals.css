@@ -18,12 +18,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  background-color: #fff;
 }
 
 @layer utilities {
@@ -34,62 +35,56 @@ body {
 
 /* Custom */
 /* Add custom styles for the StepIndicator */
-.step-indicator {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
 
-.step {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.step-circle {
+.step-icon {
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #4a5568;
-  color: white;
+  background-color: #e2e8f0;
+  color: #6b7280;
+  font-size: 1.25rem;
   transition: all 0.5s;
   z-index: 1;
 }
 
-.step-circle.active {
-  background-color: #000954;
-  color: #fff;
-}
-
-.step-circle.completed {
+.step-icon.active {
   background-color: #48bb78;
   color: #fff;
-}
-
-.step-label {
-  margin-top: 0.5rem;
-  text-align: center;
 }
 
 .step-line {
   position: absolute;
-  top: 30%;
+  top: 34%;
   left: 50%;
-  height: 0.25rem;
-  width: 100%;
-  background-color: #e2e8f0;
+  width: calc(100% - 2.5rem);
+  height: 0.125rem;
+  background-color: #d1d5db;
   transition: all 0.5s;
+  z-index: 0;
 }
 
 .step-line.active {
-  background-color: #f56565;
+  background-color: #48bb78;
 }
 
-.step-line.completed {
-  background-color: #48bb78;
+/*  */
+.toggle-checkbox:checked {
+  right: 0;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #4ade80; /* Change to your primary color */
+}
+
+.toggle-checkbox {
+  right: 15px;
+  top: 0px;
+  transition: all 0.3s;
+}
+
+.toggle-label {
+  transition: background-color 0.3s;
 }
