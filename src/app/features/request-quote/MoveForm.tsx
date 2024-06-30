@@ -266,7 +266,6 @@ const MoveForm: React.FC = () => {
       MillageCost
     );
   };
-  const googleMapKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
   const handleSubmit = (
     values: LocationData,
     { resetForm }: { resetForm: any }
@@ -299,7 +298,7 @@ const MoveForm: React.FC = () => {
   return (
     <RequestQuoteLayout step={currentStep}>
       <LoadScript
-        googleMapsApiKey={googleMapKey}
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY ?? ""}
         libraries={["places"]}
         loadingElement={<LoadingScreen />} // Use the custom loading screen
       >
