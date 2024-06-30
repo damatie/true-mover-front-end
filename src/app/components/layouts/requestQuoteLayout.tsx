@@ -16,7 +16,7 @@ const RequestQuoteLayout: React.FC<RequestQuoteLayoutProps> = ({
       <div className=" flex w-full mb-[40px] md:mb-[60px] ">
         <img src="/img/logo-plain.png" className=" w-[150px] md:w-[200px]" />
       </div>
-      {step === 3 && (
+      {Number(step) !== 3 && (
         <div className=" text-center mb-[70px]">
           <p className=" text-primaryBlue text-sm font-semibold">
             REQUEST A QUOTE

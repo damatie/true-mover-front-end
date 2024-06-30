@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useFormikContext } from "formik";
 import { GoogleMap, Marker, DirectionsRenderer } from "@react-google-maps/api";
 import TextInput from "../../components/forms/TextInput";
@@ -50,6 +50,37 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
   const { values, touched, errors, handleChange, handleBlur, setFieldValue } =
     useFormikContext<any>();
 
+  const [mapCenter, setMapCenter] = useState({ lat: 54.0, lng: -2.0 });
+  const [mapZoom, setMapZoom] = useState(6);
+
+  useEffect(() => {
+    if (source && destination) {
+      setMapCenter({
+        lat:
+          (source.geometry!.location!.lat() +
+            destination.geometry!.location!.lat()) /
+          2,
+        lng:
+          (source.geometry!.location!.lng() +
+            destination.geometry!.location!.lng()) /
+          2,
+      });
+      setMapZoom(10); // Adjust the zoom level as needed
+    } else if (source) {
+      setMapCenter({
+        lat: source.geometry!.location!.lat(),
+        lng: source.geometry!.location!.lng(),
+      });
+      setMapZoom(12);
+    } else if (destination) {
+      setMapCenter({
+        lat: destination.geometry!.location!.lat(),
+        lng: destination.geometry!.location!.lng(),
+      });
+      setMapZoom(12);
+    }
+  }, [source, destination]);
+
   const handleSourceSelected = (place: google.maps.places.PlaceResult) => {
     if (place.geometry) {
       setSource(place);
@@ -85,7 +116,7 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
       setFieldValue("destination", "");
     }
   };
-  // Convert didtance to miles
+  // Convert distance to miles
   const miles = useKilometersToMiles(distance);
 
   // Disable past and current date
@@ -208,8 +239,8 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
 
         <div className="flex flex-col w-full xl:w-[380px] mt-[30px] xl:mt-[30px] h-64">
           <GoogleMap
-            center={{ lat: 54.0, lng: -2.0 }} // Centered on the UK
-            zoom={6}
+            center={mapCenter} // Use the state for center
+            zoom={mapZoom} // Use the state for zoom
             mapContainerStyle={{ height: "100%", width: "100%" }}
             options={{
               mapTypeControl: false, // Disable map type control (map/satellite)

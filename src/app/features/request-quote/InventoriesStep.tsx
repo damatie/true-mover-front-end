@@ -52,10 +52,10 @@ const InventoriesStep: React.FC<InventoriesStepProps> = ({
             <button
               type="button"
               key={category}
-              className={`py-2 px-4 text-sm rounded-lg transition duration-300 ${
+              className={`w-auto py-3 px-4 text-sm font-semibold rounded-lg transition duration-300 ${
                 activeTab === category
-                  ? "bg-blue-900 text-white"
-                  : "bg-gray-300 text-black hover:bg-gray-400"
+                  ? "bg-primaryBlue text-white shadow-lg"
+                  : "bg-gray-100 text-gray-800 hover:bg-gray-200"
               }`}
               onClick={() => setActiveTab(category)}
             >
@@ -63,6 +63,7 @@ const InventoriesStep: React.FC<InventoriesStepProps> = ({
             </button>
           ))}
         </div>
+
         <InventoryItem
           category={activeTab}
           items={inventoryData[activeTab]}

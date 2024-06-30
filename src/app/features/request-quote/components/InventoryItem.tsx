@@ -26,7 +26,7 @@ const InventoryItem: React.FC<InventoryItemProps> = ({
     <div className="space-y-6">
       <h3 className="text-lg font-semibold text-left mb-6">{category}</h3>
       <div className="flex flex-col gap-y-[10px]">
-        {items.map((item) => (
+        {items?.map((item) => (
           <div
             key={item.name}
             className=" flex  flex-row items-center justify-between rounded-lg border-[1px] py-[10px] px-[12px] bg-white text-center"
