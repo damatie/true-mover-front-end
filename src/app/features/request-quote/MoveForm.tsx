@@ -67,6 +67,7 @@ const MoveForm: React.FC = () => {
   const [source, setSource] = useState<google.maps.places.PlaceResult | null>(
     null
   );
+  const [isLoading, setIsLoading] = useState(false);
   const [destination, setDestination] =
     useState<google.maps.places.PlaceResult | null>(null);
   const [distance, setDistance] = useState<string | number | null>(null);
@@ -207,6 +208,8 @@ const MoveForm: React.FC = () => {
     emailjs.send(serviceID, templateID, formData, userID).then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
+        setCurrentStep(currentStep + 1);
+        setIsLoading(false);
       },
       (err) => {
         console.error("FAILED...", err);
@@ -270,6 +273,7 @@ const MoveForm: React.FC = () => {
     values: LocationData,
     { resetForm }: { resetForm: any }
   ) => {
+    setIsLoading(true);
     const filteredInventoryData = filterSelectedItems(inventoryData);
 
     const formData = {
@@ -291,8 +295,6 @@ const MoveForm: React.FC = () => {
     };
 
     sendEmail(formData);
-    resetForm();
-    setCurrentStep(currentStep + 1);
   };
 
   return (
@@ -409,10 +411,11 @@ const MoveForm: React.FC = () => {
                           disabled={
                             (currentStep === 0 &&
                               (!sourceValid || !destinationValid)) ||
-                            !isValid
+                            !isValid ||
+                            isLoading
                           }
                         >
-                          Submit
+                          {isLoading ? "Pleas wait.." : "Submit"}
                         </Button>
                       )}
                     </div>

@@ -46,7 +46,7 @@ const InventoryItem: React.FC<InventoryItemProps> = ({
               <span className="text-sm font-semibold">{item.qty}</span>
               <button
                 type="button"
-                className={`bg-gray-500 text-white rounded-full w-5 h-5 flex items-center pt-[3px] justify-center ${
+                className={`bg-gray-500 text-white rounded-full w-5 h-5 flex items-center  justify-center ${
                   item.qty >= item.maxQty ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 onClick={() => incrementCount(item.name, item.qty, item.maxQty)}

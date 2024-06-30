@@ -58,6 +58,7 @@ const LocationStep: React.FC<LocationStepProps> = ({
       <div className="flex flex-col lg:flex-row lg:space-x-6">
         <div className="flex-1 space-y-4">
           <h3 className="text-lg font-bold mb-4">Loading Point</h3>
+          <p>Floor</p>
           <div className="flex flex-wrap mb-4">
             {floorData.map((floor) => (
               <ModernRadioInput
@@ -93,6 +94,7 @@ const LocationStep: React.FC<LocationStepProps> = ({
         </div>
         <div className="flex-1 space-y-4">
           <h3 className="text-lg font-bold mb-4">Unloading Point</h3>
+          <p>Floor</p>
           <div className="flex flex-wrap  mb-4">
             {floorData.map((floor) => (
               <ModernRadioInput
