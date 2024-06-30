@@ -20,6 +20,7 @@ import {
   LocationData,
 } from "../request-quote/utils/types"; // Import the types
 import {
+  defaultExtraMaterials,
   FLoorCost,
   Inventory,
   LandingCost,
@@ -180,11 +181,7 @@ const MoveForm: React.FC = () => {
     unloadingUnpacking: false,
     manpower: 1,
     additionalPackingMaterial: false,
-    extraMaterials: [
-      { name: "Small Box", quantity: 0, price: 10 },
-      { name: "Medium Box", quantity: 0, price: 15 },
-      { name: "Large Box", quantity: 0, price: 20 },
-    ], // Initial field for extra materials
+    extraMaterials: defaultExtraMaterials, // Initial field for extra materials
   };
 
   const filterSelectedItems = (data: InventoryData) => {
@@ -280,7 +277,7 @@ const MoveForm: React.FC = () => {
       reference: Math.floor(10000000 + Math.random() * 90000000).toString(),
 
       total_price: calculateTotalPrice(values).toFixed(2),
-      volume: calculateTotalVolume(),
+      volume: calculateTotalVolume().toFixed(2),
       ...values,
       distance: ((distance as number) / 1609.34).toFixed(2), // Convert to miles
       loadingElevator: values.loadingElevator ? "Yes" : "No",
