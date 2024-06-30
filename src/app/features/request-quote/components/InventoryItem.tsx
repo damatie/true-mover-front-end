@@ -24,34 +24,29 @@ const InventoryItem: React.FC<InventoryItemProps> = ({
 }) => {
   return (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-center mb-6">{category}</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+      <h3 className="text-lg font-semibold text-left mb-6">{category}</h3>
+      <div className="flex flex-col gap-y-[10px]">
         {items.map((item) => (
           <div
             key={item.name}
-            className="border rounded-lg shadow-lg p-4 bg-white text-center"
+            className=" flex  flex-row items-center justify-between rounded-lg border-[1px] py-[10px] px-[12px] bg-white text-center"
           >
-            <img
-              src={item.img}
-              alt={item.name}
-              className="w-full h-24 object-cover rounded-t-lg mb-2"
-            />
-            <div className="text-lg font-semibold mb-2">{item.name}</div>
-            <div className="text-gray-500 mb-4">
-              {item.volume} {item.SIunit}
+            <div className="text-sm font-semibold mb-2 text-left  pt-[5px] flex w-2/3">
+              {item.name}
+              {/* {item.volume} {item.SIunit} */}
             </div>
             <div className="flex justify-center items-center space-x-2">
               <button
                 type="button"
-                className="bg-gray-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                className="bg-gray-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
                 onClick={() => decrementCount(item.name, item.qty)}
               >
                 -
               </button>
-              <span className="text-lg font-semibold">{item.qty}</span>
+              <span className="text-sm font-semibold">{item.qty}</span>
               <button
                 type="button"
-                className={`bg-gray-500 text-white rounded-full w-8 h-8 flex items-center justify-center ${
+                className={`bg-gray-500 text-white rounded-full w-5 h-5 flex items-center pt-[3px] justify-center ${
                   item.qty >= item.maxQty ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 onClick={() => incrementCount(item.name, item.qty, item.maxQty)}

@@ -13,6 +13,7 @@ import {
 interface Item {
   volume: number;
   qty: number;
+  amount: number;
 }
 
 interface ExtraMaterial {
@@ -54,6 +55,10 @@ const useCalculateTotalCost = (
     (total, item) => total + item.volume * item.qty,
     0
   );
+  const sumPrice = selectedItems.reduce(
+    (total, item) => total + item.amount * item.qty,
+    0
+  );
 
   const miles = useKilometersToMiles(distance);
   const calculateExtraMaterialsCost = () => {
@@ -85,7 +90,7 @@ const useCalculateTotalCost = (
       : 0;
 
     return (
-      totalVolume +
+      sumPrice +
       ExtraMaterialsCost +
       HighFloorCost +
       LandingCost +

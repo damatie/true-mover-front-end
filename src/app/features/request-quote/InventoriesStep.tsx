@@ -25,7 +25,7 @@ const InventoriesStep: React.FC<InventoriesStepProps> = ({
   inventoryData,
   handleInventoryChange,
 }) => {
-  const [activeTab, setActiveTab] = useState<string>("Bedroom");
+  const [activeTab, setActiveTab] = useState<string>("Livingroom");
 
   const incrementCount = (
     category: string,
@@ -47,12 +47,12 @@ const InventoriesStep: React.FC<InventoriesStepProps> = ({
   return (
     <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
       <div className="flex-1">
-        <div className="flex flex-wrap md:justify-center  gap-[10px] mb-4">
+        <div className="flex flex-wrap md:justify-start  gap-[10px] mb-[20px]">
           {Object.keys(inventoryData).map((category) => (
             <button
               type="button"
               key={category}
-              className={`py-2 px-4 rounded-lg transition duration-300 ${
+              className={`py-2 px-4 text-sm rounded-lg transition duration-300 ${
                 activeTab === category
                   ? "bg-blue-900 text-white"
                   : "bg-gray-300 text-black hover:bg-gray-400"

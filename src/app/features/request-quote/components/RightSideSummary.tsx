@@ -52,7 +52,7 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
   };
 
   return (
-    <div className="w-full lg:w-full bg-white p-6 rounded-lg shadow-lg space-y-4">
+    <div className="w-full mx-auto md:w-[600px] lg:w-full bg-white p-6 rounded-lg border-[1px] space-y-4">
       <h3 className="text-2xl font-bold mb-4">Estimated Cost</h3>
 
       <div className="space-y-2 text-sm">
@@ -98,12 +98,12 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
                   <span>{item.qty}</span>
                 </li>
               ))}
-              <div className="flex justify-between text-sm font-bold pt-4">
+              {/* <div className="flex justify-between text-sm font-bold pt-4">
                 <span>Total Volume (Cubic Meter)</span>
                 <span>
                   {totalVolume.toFixed(2)} m<sup>3</sup>
                 </span>
-              </div>
+              </div> */}
             </ul>
           )}
         </div>
@@ -194,7 +194,7 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
 
         <div className="flex justify-between text-[16px] font-bold mt-4 border-t pt-2">
           <span>Total Price</span>
-          <span>£{totalCost.toFixed(2)}</span>
+          <span>£{selectedItems.length > 0 ? totalCost.toFixed(2) : 0}</span>
         </div>
       </div>
     </div>

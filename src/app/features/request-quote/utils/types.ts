@@ -7,6 +7,7 @@ export interface InventoryItemType {
   maxQty: number;
   SIunit: string;
   volume: number;
+  amount: number;
 }
 
 export interface InventoryData {

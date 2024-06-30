@@ -213,7 +213,7 @@ const MoveForm: React.FC = () => {
       }
     );
   };
-  // Calculate total volume
+  // Calculate total volume and sum price
 
   const calculateTotalVolume = () => {
     return filterSelectedItems(inventoryData).reduce(
@@ -222,9 +222,16 @@ const MoveForm: React.FC = () => {
     );
   };
 
+  const calculateSumPrice = () => {
+    return filterSelectedItems(inventoryData).reduce(
+      (total, item) => total + item.amount * item.qty,
+      0
+    );
+  };
+
   // Calculate total price
   const calculateTotalPrice = (values: LocationData) => {
-    const totalVolume = calculateTotalVolume();
+    const sumPrice = calculateSumPrice();
     const HighFloorCost =
       (values.loadingFloor && Number(values.loadingFloor) > 1) ||
       (values.unloadingFloor && Number(values.unloadingFloor) > 1)
@@ -248,7 +255,7 @@ const MoveForm: React.FC = () => {
     const UnpackagingCost = values.unloadingUnpacking ? UnpackagingPrice : 0;
 
     return (
-      totalVolume +
+      sumPrice +
       ExtraMaterialsCost +
       HighFloorCost +
       LandingCost +
@@ -290,7 +297,7 @@ const MoveForm: React.FC = () => {
   };
 
   return (
-    <RequestQuoteLayout>
+    <RequestQuoteLayout step={currentStep}>
       <LoadScript
         googleMapsApiKey={googleMapKey}
         libraries={["places"]}
@@ -316,13 +323,13 @@ const MoveForm: React.FC = () => {
                 className={` w-full  ${
                   Number(currentStep) === 0 || Number(currentStep) === 3
                     ? " mx-auto w-full"
-                    : "lg:w-2/3"
+                    : "lg:w-3/4"
                 }`}
               >
                 {Number(currentStep) !== 3 && (
                   <StepIndicator currentStep={currentStep} />
                 )}
-                <Form className="space-y-6 md:px-[60px] xl:mt-[70px]">
+                <Form className="space-y-6 md:px-[40px] xl:mt-[70px]">
                   {currentStep === 0 && (
                     <MoveInfo
                       sourceValid={sourceValid}
