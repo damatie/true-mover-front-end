@@ -42,7 +42,7 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
     locationData
   );
 
-  const totalCost = handleFinalPrice();
+  const subTotal = handleFinalPrice();
 
   const toggleSection = (section: string) => {
     setSections((prevSections) => ({
@@ -50,6 +50,9 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
       [section]: !prevSections[section],
     }));
   };
+
+  const vat = subTotal * 0.2;
+  const totalCost = vat + subTotal;
 
   return (
     <div className="w-full mx-auto md:w-[600px] lg:w-full bg-white p-6 rounded-lg border-[1px] space-y-4">
@@ -192,6 +195,14 @@ const RightSideSummary: React.FC<RightSideSummaryProps> = ({
           </>
         </div>
 
+        <div className="flex justify-between text-[16px] text-sm font-medium mt-4 border-t pt-2">
+          <span>VAT (20%)</span>
+          <span>£{selectedItems.length > 0 ? vat.toFixed(2) : 0}</span>
+        </div>
+        <div className="flex justify-between text-[16px] text-sm font-medium mt-4 border-t pt-2">
+          <span>Sub Total </span>
+          <span>£{selectedItems.length > 0 ? subTotal.toFixed(2) : 0}</span>
+        </div>
         <div className="flex justify-between text-[16px] font-bold mt-4 border-t pt-2">
           <span>Total Price</span>
           <span>£{selectedItems.length > 0 ? totalCost.toFixed(2) : 0}</span>

@@ -205,11 +205,12 @@ const MoveForm: React.FC = () => {
     emailjs.send(serviceID, templateID, formData, userID).then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
-        setCurrentStep(currentStep + 1);
+        // setCurrentStep(currentStep + 1);
         setIsLoading(false);
       },
       (err) => {
         console.error("FAILED...", err);
+        setIsLoading(false);
       }
     );
   };
@@ -272,11 +273,17 @@ const MoveForm: React.FC = () => {
   ) => {
     setIsLoading(true);
     const filteredInventoryData = filterSelectedItems(inventoryData);
+    const subTotal = calculateTotalPrice(values).toFixed(2);
+    const vat = calculateTotalPrice(values) * 0.2;
+    const total = Number(vat) + Number(subTotal);
+    console.log(typeof total);
 
     const formData = {
       reference: Math.floor(10000000 + Math.random() * 90000000).toString(),
 
-      total_price: calculateTotalPrice(values).toFixed(2),
+      sub_total_price: subTotal,
+      vat: vat.toFixed(2),
+      total_price: total.toFixed(2),
       volume: calculateTotalVolume().toFixed(2),
       ...values,
       distance: ((distance as number) / 1609.34).toFixed(2), // Convert to miles
@@ -412,7 +419,7 @@ const MoveForm: React.FC = () => {
                             isLoading
                           }
                         >
-                          {isLoading ? "Pleas wait.." : "Submit"}
+                          {isLoading ? "Please wait.." : "Submit"}
                         </Button>
                       )}
                     </div>
