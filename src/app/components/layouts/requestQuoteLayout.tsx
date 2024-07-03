@@ -28,8 +28,8 @@ const RequestQuoteLayout: React.FC<RequestQuoteLayoutProps> = ({
           </p>
         </div>
       )}
-      <div className=" flex w-full max-w-[1000px] mx-auto">{children}</div>
-      <div className=" text-center text-primaryBlue  font-medium">
+      <div className=" flex w-full max-w-[900px] mx-auto">{children}</div>
+      <div className=" text-center text-primaryBlue my-[20px] font-medium">
         <a href="https://caesarland.co.uk">Go back to website</a>
       </div>
     </div>

@@ -124,7 +124,7 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
 
   return (
     <>
-      <div className="flex flex-col xl:flex-row w-full gap-x-[30px] mt-[20px] items-start">
+      <div className="flex flex-col xl:flex-row w-full gap-x-[30px] items-start">
         <div className="flex flex-col flex-1 w-full space-y-[15px]">
           <GooglePlacesInput
             label="Pickup Location"

@@ -205,7 +205,7 @@ const MoveForm: React.FC = () => {
     emailjs.send(serviceID, templateID, formData, userID).then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
-        // setCurrentStep(currentStep + 1);
+        setCurrentStep(currentStep + 1);
         setIsLoading(false);
       },
       (err) => {
@@ -323,122 +323,132 @@ const MoveForm: React.FC = () => {
             touched,
             setFieldValue,
           }) => (
-            <main className="flex flex-col lg:flex-row w-full">
-              <div
-                className={` w-full  ${
-                  Number(currentStep) === 0 || Number(currentStep) === 3
-                    ? " mx-auto w-full"
-                    : "lg:w-3/4"
-                }`}
-              >
+            <main
+              className={`flex flex-col lg:flex-row w-full ${
+                Number(currentStep) !== 3 &&
+                " border-[1px] py-[40px] rounded-md px-[40px] shadow-sm"
+              }`}
+            >
+              <div className={` w-full flex flex-col`}>
                 {Number(currentStep) !== 3 && (
                   <StepIndicator currentStep={currentStep} />
                 )}
-                <Form className="space-y-6 md:px-[40px] xl:mt-[70px]">
-                  {currentStep === 0 && (
-                    <MoveInfo
-                      sourceValid={sourceValid}
-                      destinationValid={destinationValid}
-                      setSourceValid={setSourceValid}
-                      setDestinationValid={setDestinationValid}
-                      setSource={setSource}
-                      setDestination={setDestination}
-                      source={source}
-                      destination={destination}
-                      distance={distance}
-                      directions={directions}
-                      calculateDistance={calculateDistance}
-                      getDirections={getDirections}
-                    />
-                  )}
 
-                  {currentStep === 1 && (
-                    <InventoriesStep
-                      inventoryData={inventoryData}
-                      handleInventoryChange={handleInventoryChange}
-                    />
-                  )}
+                <div className=" flex flex-row gap-x-[20px] xl:mt-[30px]">
+                  <Form
+                    className={`space-y-6     ${
+                      Number(currentStep) === 0 || Number(currentStep) === 3
+                        ? " mx-auto w-full"
+                        : "lg:w-2/3"
+                    }`}
+                  >
+                    {currentStep === 0 && (
+                      <MoveInfo
+                        sourceValid={sourceValid}
+                        destinationValid={destinationValid}
+                        setSourceValid={setSourceValid}
+                        setDestinationValid={setDestinationValid}
+                        setSource={setSource}
+                        setDestination={setDestination}
+                        source={source}
+                        destination={destination}
+                        distance={distance}
+                        directions={directions}
+                        calculateDistance={calculateDistance}
+                        getDirections={getDirections}
+                      />
+                    )}
 
-                  {currentStep === 2 && (
-                    <LocationStep
-                      handleChange={handleChange}
-                      handleBlur={handleBlur}
-                      values={values}
-                      errors={errors}
-                      touched={touched}
-                      setFieldValue={setFieldValue}
-                    />
-                  )}
+                    {currentStep === 1 && (
+                      <InventoriesStep
+                        inventoryData={inventoryData}
+                        handleInventoryChange={handleInventoryChange}
+                      />
+                    )}
 
-                  {currentStep === 3 && <ThankYouStep />}
+                    {currentStep === 2 && (
+                      <LocationStep
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        setFieldValue={setFieldValue}
+                      />
+                    )}
 
-                  {currentStep < 3 && (
-                    <div className="flex justify-between items-start !my-[40px]">
-                      <Button
-                        type="button"
-                        onClick={handleBack}
-                        className="bg-gray-500 text-white md:py-[15px] md:w-[200px]"
-                        disabled={currentStep === 0}
-                      >
-                        Back
-                      </Button>
-                      {Number(currentStep) !== 2 && (
+                    {currentStep === 3 && <ThankYouStep />}
+
+                    {currentStep < 3 && (
+                      <div className="flex justify-between items-start !my-[30px]">
                         <Button
                           type="button"
-                          onClick={() => handleNext(validateForm, values)}
-                          className={`${
-                            (currentStep === 0 &&
-                              (!sourceValid || !destinationValid)) ||
-                            !isValid
-                              ? "bg-gray-500"
-                              : "bg-primaryBlue"
-                          } text-white md:py-[15px] md:w-[200px]`}
-                          disabled={
-                            (currentStep === 0 &&
-                              (!sourceValid || !destinationValid)) ||
-                            !isValid
-                          }
+                          onClick={handleBack}
+                          className="bg-gray-500 text-white md:py-[15px] md:w-[200px]"
+                          disabled={currentStep === 0}
                         >
-                          Next
+                          Back
                         </Button>
-                      )}
-                      {Number(currentStep) === 2 && (
-                        <Button
-                          type="submit"
-                          className={`${
-                            (currentStep === 0 &&
-                              (!sourceValid || !destinationValid)) ||
-                            !isValid
-                              ? "bg-gray-500"
-                              : "bg-primaryBlue"
-                          } text-white md:py-[15px] md:w-[200px]`}
-                          disabled={
-                            (currentStep === 0 &&
-                              (!sourceValid || !destinationValid)) ||
-                            !isValid ||
-                            isLoading
-                          }
-                        >
-                          {isLoading ? "Please wait.." : "Submit"}
-                        </Button>
-                      )}
+                        {Number(currentStep) !== 2 && (
+                          <Button
+                            type="button"
+                            onClick={() => handleNext(validateForm, values)}
+                            className={`${
+                              (currentStep === 0 &&
+                                (!sourceValid || !destinationValid)) ||
+                              !values.name ||
+                              !values.email ||
+                              !values.date ||
+                              !values.phone
+                                ? "bg-gray-500"
+                                : "bg-primaryBlue"
+                            } text-white md:py-[15px] md:w-[200px]`}
+                            disabled={
+                              (currentStep === 0 &&
+                                (!sourceValid || !destinationValid)) ||
+                              !values.name ||
+                              !values.email ||
+                              !values.date ||
+                              !values.phone
+                            }
+                          >
+                            Next
+                          </Button>
+                        )}
+                        {Number(currentStep) === 2 && (
+                          <Button
+                            type="submit"
+                            className={`${
+                              currentStep === 3 && !isValid
+                                ? "bg-gray-500"
+                                : "bg-primaryBlue"
+                            } text-white md:py-[15px] md:w-[200px]`}
+                            disabled={
+                              (currentStep === 3 && !isValid) || isLoading
+                            }
+                          >
+                            {isLoading ? "Please wait.." : "Submit"}
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  </Form>
+
+                  {currentStep > 0 && currentStep < 3 && (
+                    <div className="w-full lg:w-2/4 mt-10 lg:mt-0">
+                      <RightSideSummary
+                        distance={distance}
+                        timePeriod={values.period}
+                        pickupDate={values.date}
+                        source={values.source}
+                        destination={values.destination}
+                        selectedItems={filterSelectedItems(inventoryData)}
+                        locationData={values}
+                      />
                     </div>
                   )}
-                </Form>
-              </div>
-              {currentStep > 0 && currentStep < 3 && (
-                <div className="w-full lg:w-1/3 mt-10 lg:mt-0">
-                  <RightSideSummary
-                    distance={distance}
-                    timePeriod={values.period}
-                    pickupDate={values.date}
-                    source={values.source}
-                    destination={values.destination}
-                    selectedItems={filterSelectedItems(inventoryData)}
-                    locationData={values}
-                  />
                 </div>
-              )}
+              </div>
             </main>
           )}
         </Formik>
