@@ -326,7 +326,7 @@ const MoveForm: React.FC = () => {
             <main
               className={`flex flex-col lg:flex-row w-full ${
                 Number(currentStep) !== 3 &&
-                " border-[1px] py-[40px] rounded-md px-[40px] shadow-sm"
+                " border-[1px] py-[40px] rounded-md px-[10px] md:px-[40px] shadow-sm"
               }`}
             >
               <div className={` w-full flex flex-col`}>

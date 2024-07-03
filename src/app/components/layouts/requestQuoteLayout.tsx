@@ -12,7 +12,7 @@ const RequestQuoteLayout: React.FC<RequestQuoteLayoutProps> = ({
   step,
 }) => {
   return (
-    <div className=" flex flex-col w-full mx-auto px-[20px] ">
+    <div className=" flex flex-col w-full mx-auto px-[10px] ">
       <div className=" flex w-full mb-[40px] md:mb-[60px]  max-w-[1200px] mx-auto ">
         <a href="https://caesarland.co.uk">
           <img src="/img/logo-plain.png" className=" w-[150px] md:w-[200px]" />
