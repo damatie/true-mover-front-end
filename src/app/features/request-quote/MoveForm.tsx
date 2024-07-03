@@ -334,7 +334,7 @@ const MoveForm: React.FC = () => {
                   <StepIndicator currentStep={currentStep} />
                 )}
 
-                <div className=" flex flex-row gap-x-[20px] xl:mt-[30px]">
+                <div className=" flex flex-col lg:flex-row gap-x-[20px] xl:mt-[30px]">
                   <Form
                     className={`space-y-6     ${
                       Number(currentStep) === 0 || Number(currentStep) === 3
