@@ -50,6 +50,7 @@ const GooglePlacesInput: React.FC<GooglePlacesInputProps> = ({
         <input
           id={name}
           name={name}
+          placeholder="Enter Post Code"
           ref={inputRef}
           value={value}
           onChange={onChange}

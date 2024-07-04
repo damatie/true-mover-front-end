@@ -3,34 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --input-background: #ffffff;
+  --input-border: #cccccc;
+  --input-text-color: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  background: white;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-  background-color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+input {
+  background-color: var(--input-background);
+}
+
+select {
+  background-color: var(--background-color);
+}
+
+input[type="date"] {
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the colors for better visibility */
+  cursor: pointer;
 }
 
 /* Custom */

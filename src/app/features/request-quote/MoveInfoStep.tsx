@@ -127,7 +127,7 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
       <div className="flex flex-col xl:flex-row w-full gap-x-[30px] items-start">
         <div className="flex flex-col flex-1 w-full space-y-[15px]">
           <GooglePlacesInput
-            label="Pickup Location"
+            label="Pickup Post Code"
             name="source"
             onPlaceSelected={handleSourceSelected}
             error={
@@ -142,7 +142,7 @@ const MoveInfo: React.FC<MoveInfoProps> = ({
             onBlur={handleBlur}
           />
           <GooglePlacesInput
-            label="Destination"
+            label="Destination Post Code"
             name="destination"
             onPlaceSelected={handleDestinationSelected}
             error={
